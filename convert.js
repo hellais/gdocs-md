@@ -12,7 +12,7 @@ const ALLOWED_TAGS = ['address', 'article', 'aside', 'audio', 'blockquote', 'bod
   'header', 'hgroup', 'hr', 'html', 'isindex', 'li', 'main', 'menu', 'nav',
   'noframes', 'noscript', 'ol', 'output', 'p', 'pre', 'section', 'table',
   'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'ul',
-  'a', 'img', 'code', 'style'
+  'a', 'img', 'code', 'style', 'b', 'i'
 ]
 
 // If modifying these scopes, delete your previously saved credentials
@@ -108,7 +108,6 @@ const listFiles = (auth) => {
             console.log(err)
             return
           }
-          const dstPath = fileId+'-export.md'
           // Google spams us with https://www.google.com/url?q= links
           const linkFixer = {
             filter: 'a',
@@ -122,18 +121,32 @@ const listFiles = (auth) => {
               return `[${innerHtml}](${href})`
             }
           }
+          const spanFixer = {
+            filter: 'span',
+            replacement: function(innerHtml, node) {
+              if (node.style.fontWeight === '700') {
+                return `**${innerHtml}**`
+              }
+              return innerHtml
+            }
+          }
           const mdOptions = {
             converters: [
-              linkFixer
+              linkFixer,
+              spanFixer
             ]
           }
-          const mdData = toMarkdown(striptags(data, ALLOWED_TAGS), mdOptions)
-          fs.writeFile(dstPath, mdData, (err) => {
-              if(err) {
-                  return console.log(err);
-              }
-              console.log(`${dstPath} written!`);
-          });
+          const dstPath = fileId+'-export.md'
+          const dstHtmlPath = fileId+'-export.html'
+          const mdData = toMarkdown(data, mdOptions)
+          fs.writeFile(dstHtmlPath, data, (err) => {
+            fs.writeFile(dstPath, mdData, (err) => {
+                if(err) {
+                    return console.log(err);
+                }
+                console.log(`${dstPath} & ${dstHtmlPath} written!`);
+            });
+          })
         })
       })
     }
