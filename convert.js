@@ -108,7 +108,7 @@ const listFiles = (auth) => {
             console.log(err)
             return
           }
-          const dstPath = fileId+'.md'
+          const dstPath = fileId+'-export.md'
           # Google spams us with https://www.google.com/url?q= links
           const linkFixer = {
             filter: 'a',
