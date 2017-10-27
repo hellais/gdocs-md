@@ -1,0 +1,16 @@
+{
+  "name": "gdocs-integrate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "googleapis": "^22.2.0",
+    "striptags": "^3.1.0",
+    "to-markdown": "^3.1.0"
+  }
+}
