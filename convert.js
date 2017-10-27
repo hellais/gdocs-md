@@ -109,7 +109,7 @@ const listFiles = (auth) => {
             return
           }
           const dstPath = fileId+'-export.md'
-          # Google spams us with https://www.google.com/url?q= links
+          // Google spams us with https://www.google.com/url?q= links
           const linkFixer = {
             filter: 'a',
             replacement: function(innerHtml, node) {
