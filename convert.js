@@ -2,18 +2,8 @@ const fs = require('fs')
 const url = require('url')
 const readline = require('readline')
 const toMarkdown = require('to-markdown')
-const striptags = require('striptags')
 const google = require('googleapis')
 const googleAuth = require('google-auth-library')
-
-const ALLOWED_TAGS = ['address', 'article', 'aside', 'audio', 'blockquote', 'body',
-  'canvas', 'center', 'dd', 'dir', 'div', 'dl', 'dt', 'fieldset', 'figcaption',
-  'figure', 'footer', 'form', 'frameset', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-  'header', 'hgroup', 'hr', 'html', 'isindex', 'li', 'main', 'menu', 'nav',
-  'noframes', 'noscript', 'ol', 'output', 'p', 'pre', 'section', 'table',
-  'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'ul',
-  'a', 'img', 'code', 'style', 'b', 'i'
-]
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/ooni-docs-sync.js
