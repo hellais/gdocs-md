@@ -108,7 +108,7 @@ const listFiles = (auth) => {
                 href = hrefUrl.searchParams.get('q')
                 console.log(href)
               }
-              return `[${innerHtml}](${href})`
+              return `[${innerHtml}](${href}) `
             }
           }
           const spanFixer = {
